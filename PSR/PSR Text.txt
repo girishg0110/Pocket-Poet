@@ -1,0 +1,17 @@
+TP=NP VP
+NP=(D/AdjP) N (PP+)
+VP=(AdvP) V (NP) (AdvP) (PP+) (AdvP)
+AdjP=(Adj) Adj
+AdvP=(Adv) Adv
+PP=P NP
+
+TP=NP/CP (T) VP
+NP=(D) (AdjP+) N (PP+) (CP)
+VP=(AdvP+) V (NP) (NP/CP) (AdvP+) (PP+) (AdvP+)
+AdjP=(AdvP) Adj
+AdvP=(AdvP) Adv
+PP=P NP
+CP=(C) TP
+
+XP → XP conj XP
+X → X conj X
