@@ -5,4 +5,4 @@ Rutgers IEEE. Adaptations of the HashMap and the AVL tree were implemented for d
 
 On the future: I will toy with some basic n-gram logistic regression, leading into applying LSTM architecture on this NLP task.
 
-![alt text](https://github.com/girishg0110/Pocket-Poet/blob/master/PocketPoetLogo.png?raw=true)
+<img src="https://github.com/girishg0110/Pocket-Poet/PocketPoetLogo.png" width="48">
