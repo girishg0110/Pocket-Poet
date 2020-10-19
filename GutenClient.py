@@ -40,7 +40,7 @@ def get_link(query):
     link_text = right_link.text.strip()
     newlines = find_all(link_text, "\n")
     author = link_text[newlines[0] + 1: newlines[1]]
-    print(author)
+    debug(author)
     print("Reading from " + link_text.replace("\n", ', '))
     download_link = "http://www.gutenberg.org" + right_link.find('a')['href']
     return (download_link + ".txt.utf-8", author)
@@ -62,8 +62,6 @@ def process_book_backend(query):
     text = BeautifulSoup(book.text, features='lxml')
     text = text.p.text
     
-#    all_author_names = find_all(text, query_result[1])
-#    text = text[all_author_names[1] + 1: all_author_names[2]]
     try: 
         startindex = text.index('***START')
     except(ValueError):
@@ -88,12 +86,8 @@ def process_poem_link(link):
     book = requests.get(link)
     text = BeautifulSoup(book.text, features='lxml')
     
-    
     poem_list = text.find_all('p')
     poem_list[:] = [pTag.get_text() for pTag in poem_list if valid_text(pTag, 'p', 'poem')]
-        
-    # Generate AVL for words in selection and dictionary {following word : frequency }
-        # Note: <br> tag is '\n'
     
     for i in range(0, len(poem_list)):
         for x in poem_list[i]:

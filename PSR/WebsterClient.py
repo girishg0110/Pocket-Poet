@@ -10,8 +10,11 @@ import requests
 dict_key = '8b69ae94-7edc-4404-99f0-4f2d0d93ccb2'
 thes_key = 'da3b1a46-9cb5-426d-8944-dca5e2bb84c2'
 
+def debug(error):
+    if (0): print(error)
+
 def look_up(word):
-    print("Looking up " + word + "...")
+    debug("Looking up " + word + "...")
     global dict_key
     link = 'https://www.dictionaryapi.com/api/v3/references/collegiate/json/' \
         + word + '?key=' + dict_key
@@ -22,7 +25,7 @@ def look_up(word):
     
     try:
         #if (type(wordJSON[0][0]) == str):
-            print("\tRedirecting... searching for " + wordJSON[0] + "...")
+            debug("\tRedirecting... searching for " + wordJSON[0] + "...")
             link = 'https://www.dictionaryapi.com/api/v3/references/collegiate/json/' \
                 + wordJSON[0][0] + '?key=' + dict_key
             merriam_response = requests.get(link)
@@ -32,7 +35,7 @@ def look_up(word):
         return wordJSON
     
 def thesaurus_entry(word):
-    print("Searching thesaurus for " + word + "...")
+    debug("Searching thesaurus for " + word + "...")
     global thes_key
     link = 'https://www.dictionaryapi.com/api/v3/references/thesaurus/json/' \
         + word + '?key=' + thes_key
@@ -43,7 +46,7 @@ def thesaurus_entry(word):
     
     try:
         #if (type(wordJSON[0][0]) == str):
-            print("\tRedirecting... searching for " + wordJSON[0] + "...")
+            debug("\tRedirecting... searching for " + wordJSON[0] + "...")
             link = 'https://www.dictionaryapi.com/api/v3/references/thesaurus/json/' \
                 + wordJSON[0][0] + '?key=' + thes_key
             merriam_response = requests.get(link)

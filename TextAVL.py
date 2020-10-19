@@ -10,7 +10,7 @@ Created on Wed Apr  1 14:19:55 2020
 # (3) Remove debug statements, edit init function, 
 # (4) Saving and loading AVL trees
 
-import random#, os
+import random
 
 class Node():
     def __init__(self, key):
@@ -69,7 +69,7 @@ class TextAVL():
             self.node.freq[key] = (self.node.freq[key] + 1) \
                                         if key in self.node.freq else 1
             debug("Key [" + str(key) + "] already in tree.")    
-    # are we double adding? once for key, once for prev
+
     def insert(self, key, prev = "^"):
         TextAVL.size += self.insert_backend(key, prev)
         self.rebalance()
@@ -227,16 +227,9 @@ class TextAVL():
         if (answer != '^'): return answer
         
         answer = self.node.right.random_word_backend(target, count)
-        return answer
-    
-#    def saveAs(file_name, file_path = os.getcwd + "MiniAuthors"):
-        
+        return answer        
     
     def display(self, level=0, pref=''):
-        '''
-        Display the whole tree. Uses recursive def.
-        TODO: create a better display using breadth-first search
-        '''        
         self.update_heights()  # Must update heights before balances 
         self.update_balances()
         debug(self.node == None)
@@ -247,85 +240,3 @@ class TextAVL():
                 self.node.left.display(level + 1, '<')
             if self.node.left != None:
                 self.node.right.display(level + 1, '>')
-
-#        
-#    def inorder_traverse(self):
-#        if self.node == None:
-#            return [] 
-#        
-#        inlist = [] 
-#        l = self.node.left.inorder_traverse()
-#        for i in l: 
-#            inlist.append(i) 
-#
-#        inlist.append(self.node.key)
-#
-#        l = self.node.right.inorder_traverse()
-#        for i in l: 
-#            inlist.append(i) 
-#    
-#        return inlist 
-# =============================================================================
-#     def delete(self, key):
-#         # debug("Trying to delete at node: " + str(self.node.key))
-#         if self.node != None: 
-#             if self.node.key == key: 
-#                 debug("Deleting ... " + str(key))  
-#                 if self.node.left.node == None and self.node.right.node == None:
-#                     self.node = None # leaves can be killed at will 
-#                 # if only one subtree, take that 
-#                 elif self.node.left.node == None: 
-#                     self.node = self.node.right.node
-#                 elif self.node.right.node == None: 
-#                     self.node = self.node.left.node
-#                 
-#                 # worst-case: both children present. Find logical successor
-#                 else:  
-#                     replacement = self.logical_successor(self.node)
-#                     if replacement != None: # sanity check 
-#                         debug("Found replacement for " + str(key) + " -> " + str(replacement.key))  
-#                         self.node.key = replacement.key 
-#                         
-#                         # replaced. Now delete the key from right child 
-#                         self.node.right.delete(replacement.key)
-#                     
-#                 self.rebalance()
-#                 return  
-#             elif key < self.node.key: 
-#                 self.node.left.delete(key)  
-#             elif key > self.node.key: 
-#                 self.node.right.delete(key)
-#                         
-#             self.rebalance()
-#         else: 
-#             return 
-# 
-# 
-# =============================================================================
-#     def logical_predecessor(self, node):
-#         ''' 
-#         Find the biggest valued node in LEFT child
-#         ''' 
-#         node = node.left.node 
-#         if node != None: 
-#             while node.right != None:
-#                 if node.right.node == None: 
-#                     return node 
-#                 else: 
-#                     node = node.right.node  
-#         return node 
-# 
-#     def logical_successor(self, node):
-#         ''' 
-#         Find the smallese valued node in RIGHT child
-#         ''' 
-#         node = node.right.node  
-#         if node != None: # just a sanity check  
-#             
-#             while node.left != None:
-#                 debug("LS: traversing: " + str(node.key))
-#                 if node.left.node == None: 
-#                     return node 
-#                 else: 
-#                     node = node.left.node  
-#         return node         

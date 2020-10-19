@@ -11,7 +11,7 @@ Created on Mon Apr  6 16:27:40 2020
 # (4) Saving and loading AVL trees
 
 from PSR.WebsterClient import look_up_PoS
-import random#, os
+import random
 
 pos_expanded = {'Adj': 'adjective', 'N' : 'noun', 'Adv' : 'adverb', \
                 'P' : 'preposition', 'D': 'determiner', 'V' : 'verb', \
